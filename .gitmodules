@@ -1,0 +1,3 @@
+[submodule "libs/kisphp/ubuntu_server_install"]
+	path = libs/kisphp/ubuntu_server_install
+	url = https://kisphp@bitbucket.org/kisphp/ubuntu_server_install.git
