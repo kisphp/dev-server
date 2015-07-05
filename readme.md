@@ -1,4 +1,3 @@
 
-git submodule init
+dev server configured with vagrant
 
-git submodule update
