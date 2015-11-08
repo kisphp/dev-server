@@ -1,11 +1,11 @@
 # Settings for the Virtualbox VM
 VM_IP='10.10.0.55'
-VM_MEMORY='1024'
+VM_MEMORY='2048'
 VM_CPUS='1'
 VM_VRAM='24'
 
 # Hostnames to be managed
-HOSTS=["dev.local", "shop.local"]
+HOSTS=["dev.local", "shop.local", "its.local", "sonia.local", "comun.local"]
 
 # Check whether we are running UNIX or Windows-based machine
 if Vagrant::Util::Platform.windows?
@@ -17,22 +17,25 @@ else
 end
 
 # Verify if salt/pillar directories are present
-require 'mkmf'
+#require 'mkmf'
 
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
-  config.vm.hostname = "kp-vagrant"
+  config.vm.hostname = "dev.local"
   config.vm.boot_timeout = 300
 
   # Enable ssh agent forwarding
   config.ssh.forward_agent = true
 
+  #config.vm.network "public_network"
+
   # The VirtualBox IP-address for the browser
   config.vm.network :private_network, ip: VM_IP
 
   # Port forwarding for services running on VM:
-  config.vm.network "forwarded_port", guest: 1080,  host: 1080,  auto_correct: true   # Mailcatcher
-  config.vm.network "forwarded_port", guest: 3306,  host: 3306,  auto_correct: true   # MySQL
+  config.vm.network :forwarded_port, guest: 22, host: 55122
+  #config.vm.network "forwarded_port", guest: 1080,  host: 1080,  auto_correct: true   # Mailcatcher
+  #config.vm.network "forwarded_port", guest: 3306,  host: 3306,  auto_correct: true   # MySQL
   #config.vm.network "forwarded_port", guest: 5432,  host: 5432,  auto_correct: true   # PostgreSQL
   #config.vm.network "forwarded_port", guest: 9200,  host: 9200,  auto_correct: true   # ELK-Elasticsearch
   #config.vm.network "forwarded_port", guest: 10007, host: 10007, auto_correct: true   # Jenkins (development)
@@ -65,7 +68,7 @@ Vagrant.configure(2) do |config|
 
   # Configure VirtualBox VM resources (CPU and memory)
   config.vm.provider :virtualbox do |vb|
-    vb.name = "KP Vagrant"
+    vb.name = "KP-Dev"
     vb.customize([
       "modifyvm", :id,
       "--memory", VM_MEMORY,
