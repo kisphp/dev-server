@@ -67,6 +67,13 @@ Vagrant.configure(2) do |config|
     config.nfs.map_gid = Process.gid
   end
 
+# http://blog.csanchez.org/2012/05/03/automatically-download-and-install-virtualbox-guest-additions-in-vagrant/
+#  Vagrant::Config.run do |config|
+#    # set auto_update to false, if do NOT want to check the correct additions
+#    # version when booting this machine
+#    config.vbguest.auto_update = false
+#  end
+
   # Configure VirtualBox VM resources (CPU and memory)
   config.vm.provider :virtualbox do |vb|
     vb.name = "KP-Dev"
