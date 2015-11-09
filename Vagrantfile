@@ -20,7 +20,8 @@ end
 #require 'mkmf'
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/trusty64"
+  #config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "debian/jessie64"
   config.vm.hostname = "dev.local"
   config.vm.boot_timeout = 300
 
