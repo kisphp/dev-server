@@ -56,8 +56,7 @@ Vagrant.configure(2) do |config|
   end
 
   # Share the application code with VM
-  config.vm.synced_folder "./", "/home/web", type: SYNCED_FOLDER_TYPE
-  config.vm.synced_folder "./server/", "/home/web", type: SYNCED_FOLDER_TYPE
+  config.vm.synced_folder "./server/", "/home/web", type: SYNCED_FOLDER_TYPE, create: true
   if SYNCED_FOLDER_TYPE == "nfs"
     config.nfs.map_uid = Process.uid
     config.nfs.map_gid = Process.gid
