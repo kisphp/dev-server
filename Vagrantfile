@@ -35,12 +35,7 @@ Vagrant.configure(2) do |config|
 
   # Port forwarding for services running on VM:
   config.vm.network :forwarded_port, guest: 22, host: 55122
-  #config.vm.network "forwarded_port", guest: 1080,  host: 1080,  auto_correct: true   # Mailcatcher
   #config.vm.network "forwarded_port", guest: 3306,  host: 3306,  auto_correct: true   # MySQL
-  #config.vm.network "forwarded_port", guest: 5432,  host: 5432,  auto_correct: true   # PostgreSQL
-  #config.vm.network "forwarded_port", guest: 9200,  host: 9200,  auto_correct: true   # ELK-Elasticsearch
-  #config.vm.network "forwarded_port", guest: 10007, host: 10007, auto_correct: true   # Jenkins (development)
-  #config.vm.network "forwarded_port", guest: 11007, host: 11007, auto_correct: true   # Jenkins (testing)
 
   # install required, but missing dependencies into the base box
   config.vm.provision :shell, path: "bootstrap.sh"
@@ -62,6 +57,7 @@ Vagrant.configure(2) do |config|
 
   # Share the application code with VM
   config.vm.synced_folder "./", "/home/web", type: SYNCED_FOLDER_TYPE
+  config.vm.synced_folder "./server/", "/home/web", type: SYNCED_FOLDER_TYPE
   if SYNCED_FOLDER_TYPE == "nfs"
     config.nfs.map_uid = Process.uid
     config.nfs.map_gid = Process.gid
