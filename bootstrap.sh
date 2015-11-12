@@ -24,6 +24,7 @@ echo " Update nodejs and npm "
 npm cache clean -f
 npm install -g n
 n stable
+npm install -g gulp
 
 #echo " INSTALL OH-MY-ZSH "
 #sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
